@@ -1,246 +1,118 @@
-# devops-zero-to-hired
+# DevOps Zero to Hired
 
-> A structured, honest, 6-month roadmap for engineers with zero DevOps experience to get their first job — built by someone actively doing this journey.
+A 6-month plan for getting your first DevOps job when you're starting from zero. No bootcamp, no $2000 course. Just the tools, the practice, and the projects.
 
-[![Stars](https://img.shields.io/github/stars/MedArkidDev-wq/devops-zero-to-hired?style=social)](https://github.com/MedArkidDev-wq/devops-zero-to-hired)
-[![Last Updated](https://img.shields.io/github/last-commit/MedArkidDev-wq/devops-zero-to-hired)]()
+I'm building this as I go through the process myself. It's not a polished curriculum from someone who got their job 10 years ago. It's what's working right now, updated as I learn what actually matters in interviews and on the job.
 
-> **This is a living document.** I update it as I go through this journey myself. No fluff — only what actually works.
+## Who this is for
 
----
+- You finished school and have no DevOps work experience
+- You're a developer who wants to move into infrastructure
+- You're a sysadmin ready to go cloud-native
+- You keep hearing "you need experience to get experience" and it's driving you nuts
 
-## Who Is This For?
+## Month 1: Foundations
 
-- Software/engineering graduates with no DevOps work experience
-- Backend developers wanting to transition to infrastructure
-- Sysadmins wanting to move into cloud/DevOps
-- Anyone told "you need experience to get experience"
+Learn Linux, Git, and Docker. Don't skip this even if you think you already know it. The interview questions go deeper than you'd expect.
 
----
+**10 hours/week minimum.**
 
-## The 6-Month Roadmap
-
-### Month 1: Foundations (Do NOT Skip This)
-
-**Goals:**
-- [ ] Linux fundamentals (navigation, permissions, processes, networking)
-- [ ] Git workflow for infrastructure code
-- [ ] AWS Free Tier setup
-- [ ] Docker basics — containers, images, Dockerfiles
-
-**Weekly commitment:** 10 hours/week
-
-**Week 1-2: Linux**
 ```bash
-# Practice these until they are muscle memory
-ls -la              # List files with details
-cd /path/           # Change directory
-chmod 755 script.sh # Make executable
-chown user:group f  # Change ownership
-ps aux              # All running processes
-top / htop          # Resource monitor
-netstat -tulpn      # Open ports
-grep -r "error" /var/log/  # Search file contents
-find . -name "*.log"       # Find files
-```
+# Linux commands that should be muscle memory
+ls -la, cd, chmod, chown, ps aux, top, netstat -tulpn
+grep -r "error" /var/log/, find . -name "*.log"
 
-**Week 3: Git**
-```bash
-git init && git branch -M main
-git add . && git commit -m "feat: initial commit"
+# Git workflow
 git checkout -b feature/my-change
+git add . && git commit -m "feat: add feature"
 git push origin feature/my-change
-# Open PR -> Review -> Merge -> Delete branch
-```
+# Open PR -> Review -> Merge
 
-**Week 4: Docker**
-```bash
+# Docker basics
 docker build -t my-app .
 docker run -d -p 8080:80 my-app
 docker compose up -d
-docker logs my-app
-docker exec -it my-app /bin/sh
 ```
 
-**Checklist:**
-- [ ] Can navigate Linux filesystem confidently
-- [ ] Understand file permissions (rwx)
-- [ ] Can write and run Bash scripts
-- [ ] Have AWS account configured
-- [ ] Have first Docker container running
-- [ ] Have GitHub profile with SSH key set up
+By the end of month 1 you should be comfortable navigating Linux, have GitHub set up with SSH, and have your first Docker container running.
 
----
+## Month 2: Infrastructure as Code
 
-### Month 2: Core Infrastructure Tools
+Terraform and GitHub Actions. This is where you start building things that look like real work.
 
-**Goals:**
-- [ ] Terraform — deploy real AWS infrastructure with code
-- [ ] GitHub Actions — your first CI/CD pipeline
-- [ ] AWS services — EC2, S3, VPC, IAM
-- [ ] AWS Cloud Practitioner exam (attempt)
-
-**Key Skills:**
 ```bash
-# Terraform workflow
-terraform init      # Download providers
-terraform plan      # Preview changes
-terraform apply     # Create resources
-terraform destroy   # Delete everything
-
-# GitHub Actions
-# Create .github/workflows/ci.yml
-# Trigger on push/PR
-# Build, test, deploy
+terraform init && terraform plan && terraform apply
+# You just created real AWS infrastructure from code
 ```
 
-**Checklist:**
-- [ ] Can deploy EC2 + VPC with Terraform
-- [ ] Have working GitHub Actions pipeline
-- [ ] Understand IAM roles and policies
-- [ ] Passed AWS Cloud Practitioner (or scheduled)
+Target the AWS Cloud Practitioner exam this month. It's $100 and it's easy, but it looks good on a resume when you have nothing else.
 
----
+## Month 3: Kubernetes + Monitoring
 
-### Month 3: Container Orchestration + Monitoring
+Pods, deployments, services. Then set up Prometheus and Grafana so you can actually see what's happening in your cluster.
 
-**Goals:**
-- [ ] Kubernetes basics — pods, deployments, services
-- [ ] Prometheus + Grafana monitoring stack
-- [ ] Alerting — what to alert on, how to respond
-- [ ] Bash scripting for automation
-
-**Key Skills:**
 ```bash
-# Kubernetes basics
 kubectl get pods -n production
-kubectl describe pod my-pod
-kubectl logs my-pod --previous
-kubectl apply -f deployment.yaml
-kubectl scale deployment my-app --replicas=3
-
-# Monitoring
-docker compose up -d   # Start Prometheus + Grafana
-# Import dashboard 1860 (Node Exporter Full)
-# Write alert rules for CPU > 80%, disk > 90%
+kubectl logs my-pod --previous    # This one saves you in debugging
+kubectl describe pod my-pod       # Look at the Events section
 ```
 
-**Checklist:**
-- [ ] Can deploy apps to Kubernetes
-- [ ] Have working monitoring dashboards
-- [ ] Can debug CrashLoopBackOff
-- [ ] Written first incident post-mortem
+Write your first incident post-mortem this month, even if the incident is simulated. Interviewers love seeing that you think about reliability.
 
----
+## Month 4: Production Skills
 
-### Month 4: Production Skills
+ArgoCD (GitOps), Helm charts, RBAC, secrets management. This is the month where your projects start looking like what companies actually run.
 
-**Goals:**
-- [ ] GitOps with ArgoCD
-- [ ] Helm charts
-- [ ] Security basics (secrets management, RBAC)
-- [ ] AWS Solutions Architect Associate (attempt)
+Try for the AWS Solutions Architect Associate exam. It's harder than Cloud Practitioner but it's the cert that opens the most doors.
 
-**Key Skills:**
-```bash
-# ArgoCD
-argocd app create my-app --repo URL --path apps/ --dest-server https://kubernetes.default.svc
-argocd app sync my-app
+## Month 5: Portfolio + Job Prep
 
-# Helm
-helm create my-chart
-helm install my-app my-chart/ -n production
-helm upgrade my-app my-chart/ --set replicas=3
-helm rollback my-app 1
-```
+You need 3 projects on GitHub that prove you can do the work:
 
-**Checklist:**
-- [ ] Push to Git -> cluster auto-updates (GitOps)
-- [ ] Built and published a Helm chart
-- [ ] Understand RBAC and secrets
-- [ ] Passed SAA (or scheduled)
-
----
-
-### Month 5: Portfolio + Job Prep
-
-**Goals:**
-- [ ] 3 portfolio projects on GitHub (see below)
-- [ ] Personal portfolio website
-- [ ] LinkedIn optimization
-- [ ] First 50 job applications
-
-**Portfolio projects to have:**
-
-| Project | What It Proves |
+| Project | What it proves |
 |---|---|
-| [Terraform + CI/CD](https://github.com/MedArkidDev-wq/devops-terraform-cicd) | IaC + automation |
-| [Monitoring Stack](https://github.com/MedArkidDev-wq/linux-monitoring-stack) | Observability |
-| [Kubernetes GitOps](https://github.com/MedArkidDev-wq/kubernetes-gitops-stack) | K8s + GitOps |
+| [Terraform + CI/CD](https://github.com/MedArkidDev-wq/devops-terraform-cicd) | You can automate infrastructure |
+| [Monitoring Stack](https://github.com/MedArkidDev-wq/linux-monitoring-stack) | You understand observability |
+| [Kubernetes GitOps](https://github.com/MedArkidDev-wq/kubernetes-gitops-stack) | You can work with K8s in a real workflow |
 
-**LinkedIn optimization:**
+Fix your LinkedIn:
 - Headline: "DevOps Engineer | Terraform | Kubernetes | AWS | CI/CD"
-- About: Problem you solve, not list of tools
-- Featured: Link to your 3 GitHub projects
+- About section: Talk about problems you solve, not a list of tools
+- Featured section: Link to your 3 GitHub projects
 
----
+## Month 6: Job Hunt
 
-### Month 6: Active Job Hunt
+Send 15-20 applications per week. Don't wait until you feel "ready" because you never will.
 
-**Goals:**
-- [ ] 100+ applications sent
-- [ ] 5+ interviews
-- [ ] Job offer
+Target these titles: Junior DevOps Engineer, Cloud Engineer, SRE, Platform Engineer. Apply even if you don't hit 100% of the requirements. Nobody does.
 
-**Application strategy:**
-- 15-20 applications per week
-- Customize cover letter for each role
-- Target "Junior DevOps" and "Cloud Engineer" roles
-- Don't ignore "SRE" and "Platform Engineer" titles
-- Apply even if you don't meet 100% of requirements
+## Free Resources
 
----
-
-## Free Resources (By Topic)
-
-| Topic | Best Free Resource |
+| Topic | Best free option |
 |---|---|
 | Linux | [Linux Journey](https://linuxjourney.com) |
 | Docker | [Play with Docker](https://labs.play-with-docker.com) |
 | Kubernetes | [KillerCoda](https://killercoda.com) |
 | Terraform | [HashiCorp Learn](https://developer.hashicorp.com/terraform) |
 | AWS | [AWS Skill Builder](https://skillbuilder.aws) |
-| CI/CD | [GitHub Actions Docs](https://docs.github.com/en/actions) |
+| CI/CD | [GitHub Actions docs](https://docs.github.com/en/actions) |
 | Monitoring | [Grafana Play](https://play.grafana.org) |
-| Networking | [Subnetting Practice](https://subnettingpractice.com) |
-| Security | [TryHackMe](https://tryhackme.com) |
 
----
+## Certs worth getting
 
-## Certifications Worth Getting
-
-| Certification | Cost | Difficulty | ROI |
-|---|---|---|---|
-| AWS Cloud Practitioner | $100 | Easy | Good for interviews |
-| AWS Solutions Architect Associate | $150 | Medium | Best AWS cert |
-| CKA (Certified Kubernetes Admin) | $395 | Hard | Highly valued |
-| Terraform Associate | $70 | Medium | Growing demand |
-| Linux Foundation Certified SysAdmin | $395 | Medium | Solid foundation |
-
----
+| Cert | Cost | Difficulty |
+|---|---|---|
+| AWS Cloud Practitioner | $100 | Easy, good for getting past HR filters |
+| AWS Solutions Architect Associate | $150 | Medium, best bang for your buck |
+| CKA | $395 | Hard, very well respected |
+| Terraform Associate | $70 | Medium, growing demand |
 
 ## Contributing
 
-Are you on the same journey? Share what worked for you!
-Open a PR with your resource, tip, or experience.
+If you're on the same path and found something that worked, open a PR.
 
----
+Star this if it's useful. It helps other people find it.
 
-**If this roadmap is helping you — please star it!**
+## About
 
-## Author
-
-**Mohamed Arkid** — DevOps Engineer and Cloud Consultant
-
-- [moarkid.com](https://moarkid.com)
-- [LinkedIn](https://www.linkedin.com/in/mohamed-arkid)
+Built by [Mohamed Arkid](https://moarkid.com). Currently on this journey myself.
